@@ -186,10 +186,10 @@ namespace Exchange
                 var stringBuilder = new StringBuilder();
                 foreach (PSObject obj in results)
                 {
-                    stringBuilder.AppendLine(obj.ToString());
+                    stringBuilder.AppendLine(obj.ToString() + "\n");
                     foreach (PSPropertyInfo info in obj.Properties)
                     {
-                        stringBuilder.AppendLine(info.Value.ToString());
+                        stringBuilder.AppendLine(info.ToString() + "\n");
                     }
                     //string value = obj.Properties["ForwardingAddress"].Value.ToString();
                 }
