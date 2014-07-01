@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using log4net;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Text;
 using System.Management.Automation;
 using System.Management.Automation.Host;
@@ -230,12 +231,12 @@ namespace Exchange
                     {
                         stringBuilder.AppendLine(info.ToString() + "\n");
                     }
-                    string forwardingAddress = GetString(obj, "ForwardingAddress");
-                    stringBuilder.AppendLine("Forwarding address: " + forwardingAddress + "\n");
+                    string distinguishedName = GetString(obj, "DistinguishedName");
+                    stringBuilder.AppendLine("Distinguished Name: " + distinguishedName + "\n");
 
-                    foreach (Object alias in GetObjectArray(obj, "EmailAlias"))
+                    foreach (Object alias in GetHashSet(obj, "AddedProperties"))
                     {
-                        stringBuilder.AppendLine("Email Aliases: " + alias);
+                        stringBuilder.AppendLine("Added Properties: " + alias);
                     }
                 }
 
@@ -298,6 +299,15 @@ namespace Exchange
                 return (Object[])obj.Properties[name].Value;
             }
             return new Object[] {};
+        }
+
+        private HashSet<string> GetHashSet(PSObject obj, string name)
+        {
+            if (!IsHashRefNull(obj, name))
+            {
+                return (HashSet<string>)obj.Properties[name].Value;
+            }
+            return new HashSet<string>();
         }
 
         private Boolean IsHashRefNull(PSObject obj, string name)
