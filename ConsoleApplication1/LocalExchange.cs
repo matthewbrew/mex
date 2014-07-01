@@ -209,6 +209,45 @@ namespace Exchange
             return "";
         }
 
+        public string GetMtAduser()
+        {
+            var runspace = GetRunspace();
+            Pipeline pipeline = runspace.CreatePipeline();
+            pipeline.Commands.AddScript("Get-MTAduser -Username mb000013a");
+
+            try
+            {
+                var results = pipeline.Invoke();
+
+
+                // convert the script result into a single string
+
+                var stringBuilder = new StringBuilder();
+                foreach (PSObject obj in results)
+                {
+                    stringBuilder.AppendLine(obj.ToString() + "\n");
+                    foreach (PSPropertyInfo info in obj.Properties)
+                    {
+                        stringBuilder.AppendLine(info.ToString() + "\n");
+                    }
+                    string forwardingAddress = GetString(obj, "ForwardingAddress");
+                    stringBuilder.AppendLine("Forwarding address: " + forwardingAddress + "\n");
+
+                    foreach (Object alias in GetObjectArray(obj, "EmailAlias"))
+                    {
+                        stringBuilder.AppendLine("Email Aliases: " + alias);
+                    }
+                }
+
+                return stringBuilder.ToString();
+            }
+            catch (Exception e)
+            {
+                log.Error("Exception from getmailbox powershell", e);
+            }
+            return "";
+        }
+
         public static string EnableMailbox(string accountName)
         {
             var runspace = GetRunspace();
