@@ -191,7 +191,13 @@ namespace Exchange
                     {
                         stringBuilder.AppendLine(info.ToString() + "\n");
                     }
-                    //string value = obj.Properties["ForwardingAddress"].Value.ToString();
+                    string forwardingAddress = GetString(obj, "ForwardingAddress");
+                    stringBuilder.AppendLine("Forwarding address: " + forwardingAddress + "\n");
+
+                    foreach (Object alias in GetObjectArray(obj, "EmailAlias"))
+                    {
+                        stringBuilder.AppendLine("Email Aliases: " + alias);
+                    }
                 }
 
                 return stringBuilder.ToString();
@@ -228,10 +234,36 @@ namespace Exchange
             CloseRunspace();
         }
 
-        private string GetStringFromMap(PSObject obj, string name)
+        private bool GetBoolean(PSObject obj, string name)
         {
-            //obj.Properties[name].Value;
+            if (!IsHashRefNull(obj, name))
+            {
+                return (bool)obj.Properties[name].Value;
+            }
+            return false;
+        }
+
+        private string GetString(PSObject obj, string name)
+        {
+            if (!IsHashRefNull(obj, name))
+            {
+                return (string)obj.Properties[name].Value;
+            }
             return "";
+        }
+
+        private Object[] GetObjectArray(PSObject obj, string name)
+        {
+            if (!IsHashRefNull(obj, name))
+            {
+                return (Object[])obj.Properties[name].Value;
+            }
+            return new Object[] {};
+        }
+
+        private Boolean IsHashRefNull(PSObject obj, string name)
+        {
+            return obj.Properties[name] == null || obj.Properties[name].Value == null;
         }
     }
 }

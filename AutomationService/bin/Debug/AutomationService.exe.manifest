@@ -64,7 +64,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>f2nvAkno251iHwSgCSS9wGhQYJdh5TS3xfSD3OsVwmI=</dsig:DigestValue>
+        <dsig:DigestValue>q8/11m8o9fg1HFd+vmeUBQv1GBGbqRkHUYUMak693Ds=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -76,19 +76,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>QSAzn0gSValbqVnZIcWshHoIX+rcfwAmWjsIVMaHWnk=</dsig:DigestValue>
+        <dsig:DigestValue>NGXiqs+mZSK2LIO5otInL+ROCR65e6oBJ/2041l6IRo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ConsoleApplication1.exe" size="10240">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ConsoleApplication1.exe" size="11264">
       <assemblyIdentity name="ConsoleApplication1" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dco1a/NLY2x1qB10Nk9CWmfIFsivT+jTqZOLJGPBbG0=</dsig:DigestValue>
+        <dsig:DigestValue>fAOuq5HLsH9eejcrKtmpPkXD3m+9n2jougDG7rhG+vk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
