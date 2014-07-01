@@ -1,0 +1,85 @@
+﻿Uninstalling assembly 'c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe
+   logfile = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.InstallLog
+Removing EventLog source IISAutomationService.
+Service IISAutomationService is being removed from the system...
+Service IISAutomationService was successfully removed from the system.
+Installing assembly 'c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe
+   logfile = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.InstallLog
+Installing service IISAutomationService...
+Service IISAutomationService has been successfully installed.
+Creating EventLog source IISAutomationService in log Application...
+Committing assembly 'c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe
+   logfile = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.InstallLog
+Uninstalling assembly 'c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe
+   logfile = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.InstallLog
+Removing EventLog source IISAutomationService.
+Service IISAutomationService is being removed from the system...
+Service IISAutomationService was successfully removed from the system.
+Installing assembly 'c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe
+   logfile = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.InstallLog
+Installing service IISAutomationService...
+Service IISAutomationService has been successfully installed.
+Creating EventLog source IISAutomationService in log Application...
+Committing assembly 'c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe
+   logfile = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.InstallLog
+Uninstalling assembly 'c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe
+   logfile = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.InstallLog
+Removing EventLog source IISAutomationService.
+Service IISAutomationService is being removed from the system...
+Service IISAutomationService was successfully removed from the system.
+Installing assembly 'c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe
+   logfile = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.InstallLog
+Installing service IISAutomationService...
+Creating EventLog source IISAutomationService in log Application...
+Rolling back assembly 'c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe
+   logfile = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.InstallLog
+Restoring event log to previous state for source IISAutomationService.
+Installing assembly 'c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe
+   logfile = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.InstallLog
+Installing service IISAutomationService...
+Service IISAutomationService has been successfully installed.
+Creating EventLog source IISAutomationService in log Application...
+Committing assembly 'c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe
+   logfile = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.InstallLog
+Uninstalling assembly 'c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.exe
+   logfile = c:\iis7\automation\IISDev\IIS7AutomationService\bin\Release\IIS7AutomationService.InstallLog
+Removing EventLog source IISAutomationService.
+Service IISAutomationService is being removed from the system...
+Service IISAutomationService was successfully removed from the system.
+Attempt to stop service IISAutomationService.

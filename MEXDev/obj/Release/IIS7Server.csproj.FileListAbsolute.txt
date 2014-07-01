@@ -1,0 +1,2 @@
+C:\iis7\automation\IISDev\IISDev\obj\Release\ResolveAssemblyReference.cache
+\\tsclient\mbrew\git\automation\modules\virtualhost\thirdtier\iis75\iis7\automation\IISDev\IISDev\bin\Release\IIS7Server.exe.config

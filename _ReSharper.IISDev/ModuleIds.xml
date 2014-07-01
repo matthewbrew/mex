@@ -1,0 +1,5 @@
+<Modules>
+  <Module PersistentId="4E296895-13CA-4DDE-A3F9-1A60035F4012" ModuleId="IIS7Server" />
+  <Module PersistentId="42B60CEE-88D0-4537-AC2E-23229FE88E81" ModuleId="EnableMasterPassword" />
+  <Module PersistentId="E7D4B4B2-BC91-470A-B9BE-DC7E316D8F7C" ModuleId="IIS7AutomationService" />
+</Modules>

@@ -1,0 +1,9 @@
+C:\iis7\automation\IISDev\RenameUser\bin\Release\RenameUser.exe
+C:\iis7\automation\IISDev\RenameUser\bin\Release\RenameUser.pdb
+C:\iis7\automation\IISDev\RenameUser\obj\Release\ResolveAssemblyReference.cache
+C:\iis7\automation\IISDev\RenameUser\obj\Release\RenameUser.exe
+C:\iis7\automation\IISDev\RenameUser\obj\Release\RenameUser.pdb
+\\tsclient\mbrew\git\automation\modules\virtualhost\thirdtier\iis75\iis7\automation\IISDev\RenameUser\bin\Release\RenameUser.exe
+\\tsclient\mbrew\git\automation\modules\virtualhost\thirdtier\iis75\iis7\automation\IISDev\RenameUser\bin\Release\RenameUser.pdb
+\\tsclient\mbrew\git\automation\modules\virtualhost\thirdtier\iis75\iis7\automation\IISDev\RenameUser\obj\Release\RenameUser.exe
+\\tsclient\mbrew\git\automation\modules\virtualhost\thirdtier\iis75\iis7\automation\IISDev\RenameUser\obj\Release\RenameUser.pdb

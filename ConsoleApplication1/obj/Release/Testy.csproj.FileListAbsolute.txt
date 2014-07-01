@@ -1,0 +1,8 @@
+C:\Users\Administrator\Desktop\MEXDev\ConsoleApplication1\bin\Release\ConsoleApplication1.exe.config
+C:\Users\Administrator\Desktop\MEXDev\ConsoleApplication1\bin\Release\ConsoleApplication1.exe
+C:\Users\Administrator\Desktop\MEXDev\ConsoleApplication1\bin\Release\ConsoleApplication1.pdb
+C:\Users\Administrator\Desktop\MEXDev\ConsoleApplication1\bin\Release\log4net.dll
+C:\Users\Administrator\Desktop\MEXDev\ConsoleApplication1\bin\Release\log4net.xml
+C:\Users\Administrator\Desktop\MEXDev\ConsoleApplication1\obj\Release\Testy.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\MEXDev\ConsoleApplication1\obj\Release\ConsoleApplication1.exe
+C:\Users\Administrator\Desktop\MEXDev\ConsoleApplication1\obj\Release\ConsoleApplication1.pdb

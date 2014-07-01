@@ -1,0 +1,147 @@
+<Configuration>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Qualified:@System.Console">
+      <Item value="Write" priority="0" />
+      <Item value="WriteLine" priority="1" />
+      <Item value="ReadLine" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Exception">
+      <Item value="Message" priority="6" />
+      <Item value="Source" priority="1" />
+      <Item value="ToString" priority="2" />
+      <Item value="StackTrace" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@IISDev.Server.log">
+      <Item value="Info" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@">
+      <Item value="createServer" priority="0" />
+      <Item value="uid" priority="0" />
+      <Item value="userPassword" priority="0" />
+      <Item value="removeMimeType" priority="0" />
+      <Item value="userExists" priority="1" />
+      <Item value="Length" priority="1" />
+      <Item value="changePools" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:automation.account.User">
+      <Item value="userPassword" priority="6" />
+      <Item value="uid" priority="8" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Web.Administration.ServerManager">
+      <Item value="CommitChanges" priority="1" />
+      <Item value="Sites" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:log4net.ILog">
+      <Item value="Info" priority="4" />
+      <Item value="Debug" priority="1" />
+      <Item value="Error" priority="2" />
+      <Item value="InfoFormat" priority="28" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:string">
+      <Item value="EndsWith" priority="2" />
+      <Item value="Equals" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.DirectoryServices.SearchResultCollection">
+      <Item value="Count" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:char[]">
+      <Item value="ToString" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System">
+      <Item value="OutOfMemoryException" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@omg.org">
+      <Item value="CosTradingRepos" priority="0" />
+      <Item value="CosTrading" priority="0" />
+      <Item value="CosTradingDynamic" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@omg.org.CosTradingDynamic">
+      <Item value="DynamicPropEval" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:omg.org.CORBA.ORB">
+      <Item value="create_abstract_interface_tc" priority="0" />
+      <Item value="create_value_tc" priority="1" />
+      <Item value="create_string_tc" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Web.Administration.Site">
+      <Item value="Applications" priority="3" />
+      <Item value="Name" priority="0" />
+      <Item value="ApplicationDefaults" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Web.Administration.Application">
+      <Item value="ApplicationPoolName" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Environment">
+      <Item value="Exit" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@IISDev">
+      <Item value="Server" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@IIS7Service">
+      <Item value="IIS7AutomationService" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@IIS7Server.Server.generalKey">
+      <Item value="GetValue" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:automation.WebserverException">
+      <Item value="message" priority="5" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Web.Administration.ApplicationPool">
+      <Item value="Enable32BitAppOnWin64" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:automation.webserver.iis.CustomError">
+      <Item value="errorCode" priority="0" />
+      <Item value="content" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+  <EditorManager>
+    <RecentFiles>
+      <File id="E7D4B4B2-BC91-470A-B9BE-DC7E316D8F7C/f:IIS7AutomationService.log4net.xml" caret="0" scrollPosition="0|0" />
+      <File id="E7D4B4B2-BC91-470A-B9BE-DC7E316D8F7C/f:IIS7AutomationService.cs" caret="0" scrollPosition="0|0" />
+      <File id="E7D4B4B2-BC91-470A-B9BE-DC7E316D8F7C/f:IIS7Installer.cs" caret="0" scrollPosition="0|0" />
+      <File id="E7D4B4B2-BC91-470A-B9BE-DC7E316D8F7C/f:IIS7AutomationService.Designer.cs" caret="0" scrollPosition="0|0" />
+      <File id="E7D4B4B2-BC91-470A-B9BE-DC7E316D8F7C/d:Properties/f:AssemblyInfo.cs" caret="0" scrollPosition="0|0" />
+      <File id="E7D4B4B2-BC91-470A-B9BE-DC7E316D8F7C/f:IIS7Installer.Designer.cs" caret="0" scrollPosition="0|0" />
+      <File id="4E296895-13CA-4DDE-A3F9-1A60035F4012/f:Server.cs" caret="947" scrollPosition="0|26" />
+      <File id="4E296895-13CA-4DDE-A3F9-1A60035F4012/f:Webserver.cs" caret="19522" scrollPosition="0|472" />
+      <File id="4E296895-13CA-4DDE-A3F9-1A60035F4012/f:IIS7AutomationServer.cs" caret="18872" scrollPosition="0|422" />
+      <File id="4E296895-13CA-4DDE-A3F9-1A60035F4012/f:IIS7Automation.log4net.xml" caret="0" scrollPosition="0|0" />
+      <File id="4E296895-13CA-4DDE-A3F9-1A60035F4012/d:Properties/f:AssemblyInfo.cs" caret="0" scrollPosition="20|23" />
+      <File id="E7D4B4B2-BC91-470A-B9BE-DC7E316D8F7C/f:Program.cs" caret="0" scrollPosition="0|0" />
+      <File id="d:&amp;/f:IIS7AutomationService.log4net.xml" caret="617" scrollPosition="0|0" />
+    </RecentFiles>
+  </EditorManager>
+  <FileStructureView>
+    <AutoScrollToSource>False</AutoScrollToSource>
+    <TrackCaretLocation>False</TrackCaretLocation>
+  </FileStructureView>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <ReFormatCode>
+    <ReorderMembers>False</ReorderMembers>
+    <OptimizeUsings>True</OptimizeUsings>
+    <RemoveRedundantThis>True</RemoveRedundantThis>
+    <ShortenReferences>True</ShortenReferences>
+  </ReFormatCode>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <SharedSolutionDisabledTemplatesManager>
+    <DisabledTemplates />
+  </SharedSolutionDisabledTemplatesManager>
+  <UnitTestRunner>
+    <CustomStartDirectory>
+    </CustomStartDirectory>
+    <UseShadowCopy>True</UseShadowCopy>
+    <UseCustomFolder>False</UseCustomFolder>
+    <Providers />
+  </UnitTestRunner>
+  <UserSolutionDisabledTemplatesManager>
+    <DisabledTemplates />
+  </UserSolutionDisabledTemplatesManager>
+</Configuration>

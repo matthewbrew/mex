@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Assemblies Version="1073741833">
+  <Assembly Name="CosTradingRepos, Version=0.0.0.0, Culture=neutral" Image="a47b3853-1e9d-4360-b322-55c94a67919b" Timestamp="633064046297031250" />
+  <Assembly Name="FirebirdSql.Data.FirebirdClient, Version=2.1.0.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c" Image="47c677ea-679f-4deb-adff-b4118488b6bb" Timestamp="633317371860000000" />
+  <Assembly Name="FirebirdSql.Web.Providers, Version=2.1.0.0, Culture=neutral, PublicKeyToken=3d06a02581b682f8" Image="fa9c8b35-fe9c-49ed-89f3-33858bcdae68" Timestamp="633317371920000000" />
+  <Assembly Name="IIOPChannel, Version=1.9.1.0, Culture=neutral, PublicKeyToken=de6f5a4c9f7fa5eb" Image="499c3fa4-110a-48b1-951b-6210af026221" Timestamp="633064039037812500" />
+  <Assembly Name="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821" Image="2179bdb7-07ac-4792-bff9-66be236f5845" Timestamp="632792822680000000" XmlDocIndexTimestamp="633438288311339480" />
+  <Assembly Name="JetBrains.Annotations, Version=4.0.819.19, Culture=neutral, PublicKeyToken=1010a0d8d6380325" Image="3ed2218c-5ef6-4735-a934-538cc4efb652" Timestamp="633486095860000000" XmlDocIndexTimestamp="633486095860000000" />
+  <Assembly Name="webserver, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" Image="d095aeed-67cb-44ef-a9c1-56878025fb18" Timestamp="633559327448638238" />
+  <Assembly Name="webserver, Version=0.0.0.0, Culture=neutral" Image="3aff8e8c-b181-43e7-9bad-d3722c64c02e" Timestamp="633559327448638238" />
+  <Assembly Name="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Image="6815a1d6-ac80-4de9-ac62-506e842229eb" Timestamp="633749670820000000" />
+  <Assembly Name="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Image="811e5932-e604-4fe4-a32c-f2094c265aee" Timestamp="633529356480000000" XmlDocIndexTimestamp="633489679300000000" />
+  <Assembly Name="System.Xml.Linq, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Image="35832509-13c7-4159-9d94-b50858fcc11a" Timestamp="633529356480000000" XmlDocIndexTimestamp="633489679300000000" />
+  <Assembly Name="System.Data.DataSetExtensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Image="219a5911-f6dd-409a-a4c9-48ef4842a91f" Timestamp="633529356480000000" XmlDocIndexTimestamp="633489679300000000" />
+</Assemblies>

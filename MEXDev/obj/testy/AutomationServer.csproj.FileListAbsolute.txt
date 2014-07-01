@@ -1,0 +1,9 @@
+C:\Users\Administrator\Desktop\MEXDev\MEXDev\bin\testy\AutomationServer.exe.config
+C:\Users\Administrator\Desktop\MEXDev\MEXDev\bin\testy\AutomationServer.exe
+C:\Users\Administrator\Desktop\MEXDev\MEXDev\bin\testy\CosTradingRepos.dll
+C:\Users\Administrator\Desktop\MEXDev\MEXDev\bin\testy\exchange.dll
+C:\Users\Administrator\Desktop\MEXDev\MEXDev\bin\testy\IIOPChannel.dll
+C:\Users\Administrator\Desktop\MEXDev\MEXDev\bin\testy\log4net.dll
+C:\Users\Administrator\Desktop\MEXDev\MEXDev\bin\testy\log4net.xml
+C:\Users\Administrator\Desktop\MEXDev\MEXDev\obj\testy\AutomationServer.exe
+C:\Users\Administrator\Desktop\MEXDev\MEXDev\obj\testy\AutomationServer.csprojResolveAssemblyReference.cache
