@@ -73,12 +73,13 @@ namespace Exchange
                         RunspaceInvoke invoker = new RunspaceInvoke(_runspace);
                         invoker.Invoke("Set-ExecutionPolicy Bypass");
                         Pipeline pipeline = _runspace.CreatePipeline();
-                        pipeline.Commands.AddScript("$secpasswd = ConvertTo-SecureString \"" + password + "\" -AsPlainText -Force");
-                        pipeline.Commands.AddScript("$mycreds = New-Object System.Management.Automation.PSCredential (\"" + user + "\", $secpasswd)");
-                        pipeline.Commands.AddScript("$s = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri " + uri + " -Authentication Basic -Credential $mycreds");
-                        pipeline.Commands.AddScript("Import-PSSession $s");
+//                        pipeline.Commands.AddScript("$secpasswd = ConvertTo-SecureString \"" + password + "\" -AsPlainText -Force");
+//                        pipeline.Commands.AddScript("$mycreds = New-Object System.Management.Automation.PSCredential (\"" + user + "\", $secpasswd)");
+//                        pipeline.Commands.AddScript("$s = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri " + uri + " -Authentication Basic -Credential $mycreds");
+ //                       pipeline.Commands.AddScript("Import-PSSession $s");
                         pipeline.Commands.AddScript("Import-Module C:\\provisioning\\testModule.psm1");
                         //pipeline.Commands.AddScript("Invoke-Command -Session $s -ScriptBlock {Import-Module testmodule}");
+                        //pipeline.Commands.AddScript("new-MEXSession");
                         //pipeline.Commands.AddScript("new-MEXSession");
                         pipeline.Invoke();
                     }
@@ -186,6 +187,11 @@ namespace Exchange
                 foreach (PSObject obj in results)
                 {
                     stringBuilder.AppendLine(obj.ToString());
+                    foreach (PSPropertyInfo info in obj.Properties)
+                    {
+                        stringBuilder.AppendLine(info.Value.ToString());
+                    }
+                    //string value = obj.Properties["ForwardingAddress"].Value.ToString();
                 }
 
                 return stringBuilder.ToString();
@@ -220,6 +226,12 @@ namespace Exchange
         public void Dispose()
         {
             CloseRunspace();
+        }
+
+        private string GetStringFromMap(PSObject obj, string name)
+        {
+            //obj.Properties[name].Value;
+            return "";
         }
     }
 }
