@@ -38,6 +38,7 @@ namespace Exchange
                 //log.Info(localExchange.GetMailbox());
                 //log.Info(localExchange.GetMailbox());
                 log.Info(localExchange.GetMtMailbox());
+                log.Info(localExchange.GetMtAduser());
             }
             Console.Read();
             //LocalExchange.CloseRunspace();
