@@ -196,7 +196,7 @@ namespace Exchange
 
                     foreach (Object alias in GetObjectArray(obj, "EmailAlias"))
                     {
-                        stringBuilder.AppendLine("Email Aliases: " + alias);
+                        stringBuilder.AppendLine("Email Aliases: " + alias); 
                     }
                 }
 
