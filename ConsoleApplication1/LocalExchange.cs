@@ -223,10 +223,12 @@ namespace Exchange
             Pipeline pipeline = runspace.CreatePipeline();
             pipeline.Commands.AddScript("Get-MTAduser -CustomerID " + customerID + " -UserPrincipalName " + userPrincipalName);
             ADUser user = new ADUser();
+            PSObjectUtils utils = new PSObjectUtils();
             try
             {
                 var results = pipeline.Invoke();
                 string errors = GetErrors(pipeline);
+  
                 if (errors != "")
                 {
                     //maybe fail !
@@ -234,8 +236,18 @@ namespace Exchange
                 
                 foreach (PSObject obj in results)
                 {
-                    user = ADUser.GetAdUser(obj);                    
-                    log.Info(user.ToString() + "\n");
+                    if (utils.IsSuccess(obj))
+                    {
+                        foreach (PSObject innerObj in utils.GetObjectArray(obj, "data"))
+                        {
+                            user = ADUser.GetAdUser(innerObj);
+                            log.Info(user.ToString() + "\n");
+                        }
+                    }
+                    else
+                    {
+                        log.Info(utils.GetString(obj, "result"));
+                    }
                 }
             }
             catch (Exception e)
