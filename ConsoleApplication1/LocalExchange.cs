@@ -180,7 +180,11 @@ namespace Exchange
             try
             {
                 var results = pipeline.Invoke();
-
+                string errors = GetErrors(pipeline);
+                if (errors != "")
+                {
+                    //fail !
+                }
 
                 // convert the script result into a single string
 
@@ -210,23 +214,108 @@ namespace Exchange
             return "";
         }
 
-        public string GetMtAduser()
+        public ADUser GetMtAduser(string customerID, string userPrincipalName)
         {
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
-            pipeline.Commands.AddScript("Get-MTAduser -Username mb000013a");
+            pipeline.Commands.AddScript("Get-MTAduser -CustomerID " + customerID + " -UserPrincipalName " + userPrincipalName);
+            ADUser user = new ADUser();
+            try
+            {
+                var results = pipeline.Invoke();
+                string errors = GetErrors(pipeline);
+                if (errors != "")
+                {
+                    //maybe fail !
+                }
+                
+                foreach (PSObject obj in results)
+                {
+                    user = ADUser.GetAdUser(obj);                    
+                    log.Info(user.ToString() + "\n");
+                }
+            }
+            catch (Exception e)
+            {
+                log.Error("Exception from getmailbox powershell", e);
+            }
+            return user;
+        }
+
+        public ADUser[] GetMtAdusers(string customerID)
+        {
+            var runspace = GetRunspace();
+            Pipeline pipeline = runspace.CreatePipeline();
+            pipeline.Commands.AddScript("Get-MTAduser -CustomerID " + customerID);
+            ADUser[] users = null;
+            try
+            {
+                var results = pipeline.Invoke();
+                string errors = GetErrors(pipeline);
+                if (errors != "")
+                {
+                    //maybe fail !
+                }
+                
+                foreach (PSObject obj in results)
+                {
+                    if (obj.Properties != null && obj.Properties["UserPrincipalName"] != null && obj.Properties["UserPrincipalName"].Value != null)
+                    {
+                        if (obj.Properties["UserPrincipalName"].Value is string)
+                        {
+                            users = new ADUser[1];
+                            users[0] = ADUser.GetAdUser(obj);
+                        }
+                        else if (obj.Properties["UserPrincipalName"].Value is Array)
+                        {
+                            int numberOfUsers = ((Array)obj.Properties["UserPrincipalName"].Value).Length;
+                            users = new ADUser[numberOfUsers];
+                            for (int i = 0; i < numberOfUsers; i++)
+                            {
+                                users[i] = ADUser.GetAdUser(obj, i);
+                            }
+                        }
+                    }
+                }
+
+                if(users != null)
+                {
+                    foreach (ADUser user in users)
+                    {
+                        log.Info(user.ToString());
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                log.Error("Exception from getmailbox powershell", e);
+            }
+            return users;
+        }
+
+        public string SetMtAduser(ADUser adUser)
+        {
+            var runspace = GetRunspace();
+            Pipeline pipeline = runspace.CreatePipeline();
+            pipeline.Commands.AddScript("Set-MTAduser " + adUser.GetPSParameters());
 
             try
             {
                 var results = pipeline.Invoke();
-
+                string errors = GetErrors(pipeline);
+                if (errors != "")
+                {
+                    //maybe fail !
+                }
 
                 // convert the script result into a single string
-
                 var stringBuilder = new StringBuilder();
                 foreach (PSObject obj in results)
                 {
-                    stringBuilder.AppendLine(obj.ToString() + "\n");
+                    ADUser user = ADUser.GetAdUser(obj);
+                    stringBuilder.AppendLine(user.ToString() + "\n");
+
+                    /*stringBuilder.AppendLine(obj.ToString() + "\n");
                     foreach (PSPropertyInfo info in obj.Properties)
                     {
                         stringBuilder.AppendLine(info.ToString() + "\n");
@@ -237,7 +326,7 @@ namespace Exchange
                     foreach (Object alias in GetHashSet(obj, "AddedProperties"))
                     {
                         stringBuilder.AppendLine("Added Properties: " + alias);
-                    }
+                    }*/
                 }
 
                 return stringBuilder.ToString();
@@ -258,7 +347,6 @@ namespace Exchange
             pipeline.Commands.AddScript("Enable-DETMailbox -Name " + accountName + " -Type Shared -Capacity 5");
 
             var results = pipeline.Invoke();
-
             var stringBuilder = new StringBuilder();
             foreach (PSObject obj in results)
             {
@@ -272,6 +360,24 @@ namespace Exchange
         public void Dispose()
         {
             CloseRunspace();
+        }
+
+        private string GetErrors(Pipeline pipeline)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (pipeline.Error.Count > 0)
+            {
+                var error = pipeline.Error.Read() as Collection<ErrorRecord>;
+                if (error != null)
+                {
+                    foreach (ErrorRecord er in error)
+                    {
+                        log.Error("Exception from PS: ", er.Exception);
+                        sb.Append(er.Exception.Message);
+                    }
+                }
+            }
+            return sb.ToString();
         }
 
         private bool GetBoolean(PSObject obj, string name)
@@ -308,6 +414,15 @@ namespace Exchange
                 return (HashSet<string>)obj.Properties[name].Value;
             }
             return new HashSet<string>();
+        }
+
+        private SortedDictionary<string, string> GetSortedDictionary(PSObject obj, string name)
+        {
+            if (!IsHashRefNull(obj, name))
+            {
+                return (SortedDictionary<string, string>)obj.Properties[name].Value;
+            }
+            return new SortedDictionary<string, string>();
         }
 
         private Boolean IsHashRefNull(PSObject obj, string name)

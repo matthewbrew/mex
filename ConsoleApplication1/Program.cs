@@ -37,8 +37,13 @@ namespace Exchange
                 //log.Info(localExchange.GetMailbox());
                 //log.Info(localExchange.GetMailbox());
                 //log.Info(localExchange.GetMailbox());
+                
+                //How to to get help documentation for powershell functions
+                //Import-Module testmodule
+                //get-help get-mtaduser -full
                 log.Info(localExchange.GetMtMailbox());
-                log.Info(localExchange.GetMtAduser());
+                log.Info(localExchange.GetMtAduser("vs000013", "mb000013a"));
+                log.Info(localExchange.GetMtAdusers("vs000013"));
             }
             Console.Read();
             //LocalExchange.CloseRunspace();
