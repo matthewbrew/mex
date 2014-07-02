@@ -250,7 +250,7 @@ namespace Exchange
                     else
                     {
                         log.Info("was fail");
-                        log.Info(utils.GetString(obj, "result"));
+                        log.Info(utils.GetString(obj, "Result"));
                     }
                 }
             }
