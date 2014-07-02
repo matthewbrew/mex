@@ -80,7 +80,7 @@ namespace Exchange
     //                        pipeline.Commands.AddScript("$mycreds = New-Object System.Management.Automation.PSCredential (\"" + user + "\", $secpasswd)");
     //                        pipeline.Commands.AddScript("$s = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri " + uri + " -Authentication Basic -Credential $mycreds");
      //                       pipeline.Commands.AddScript("Import-PSSession $s");
-                            string importModule = "Import-Module C:\\provisioning\\testModule.psm1";
+                            string importModule = "Import-Module C:\\provisioning\\tm.psm1";
                             pipeline.Commands.AddScript(importModule);
                             //pipeline.Commands.AddScript("Invoke-Command -Session $s -ScriptBlock {Import-Module testmodule}");
                             //pipeline.Commands.AddScript("new-MEXSession");
@@ -230,7 +230,7 @@ namespace Exchange
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
             //pipeline.Commands.AddScript("Get-MTAduser -CustomerID " + customerID + " -UserPrincipalName " + userPrincipalName);
-            pipeline.Commands.AddScript("Get-Command");
+            pipeline.Commands.AddScript("Hello");
             ADUser user = new ADUser();
             try
             {
