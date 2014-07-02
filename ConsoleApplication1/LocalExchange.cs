@@ -247,12 +247,10 @@ namespace Exchange
                     if (utils.IsSuccess(obj))
                     {
                         log.Info("was success");
-                        foreach (PSObject innerObj in (Collection<PSObject>)obj.Properties["Data"].Value)
-                        {
-                            log.Info(innerObj);
-                            user = ADUser.GetAdUser(innerObj);
-                            log.Info(user.ToString() + "\n");
-                        }
+                        PSObject innerObj = (PSObject)obj.Properties["Data"].Value;
+                        log.Info(innerObj);
+                        user = ADUser.GetAdUser(innerObj);
+                        log.Info(user.ToString() + "\n");
                     }
                     else
                     {
