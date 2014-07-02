@@ -78,7 +78,7 @@ namespace Exchange
 //                        pipeline.Commands.AddScript("$mycreds = New-Object System.Management.Automation.PSCredential (\"" + user + "\", $secpasswd)");
 //                        pipeline.Commands.AddScript("$s = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri " + uri + " -Authentication Basic -Credential $mycreds");
  //                       pipeline.Commands.AddScript("Import-PSSession $s");
-                        pipeline.Commands.AddScript("Import-Module testModule");
+                        pipeline.Commands.AddScript("Import-Module C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\Modules\\testModule\\testmodule.psm1");
                         //pipeline.Commands.AddScript("Invoke-Command -Session $s -ScriptBlock {Import-Module testmodule}");
                         //pipeline.Commands.AddScript("new-MEXSession");
                         //pipeline.Commands.AddScript("new-MEXSession");
