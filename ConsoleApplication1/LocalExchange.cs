@@ -244,11 +244,10 @@ namespace Exchange
                     }
 
                     log.Info(obj);
-                    log.Info(utils.GetObjectArray(obj, "Data"));
                     if (utils.IsSuccess(obj))
                     {
                         log.Info("was success");
-                        foreach (PSObject innerObj in utils.GetObjectArray(obj, "Data"))
+                        foreach (PSObject innerObj in (Collection<PSObject>)obj.Properties["Data"].Value)
                         {
                             log.Info(innerObj);
                             user = ADUser.GetAdUser(innerObj);
