@@ -234,31 +234,18 @@ namespace Exchange
                     //maybe fail !
                 }
 
-                var stringBuilder = new StringBuilder();
                 foreach (PSObject obj in results)
                 {
-                    stringBuilder.AppendLine(obj.ToString());
-                    foreach (PSPropertyInfo info in obj.Properties)
-                    {
-                        stringBuilder.AppendLine(info.ToString());
-                    }
-
-                    log.Info(obj);
                     if (utils.IsSuccess(obj))
                     {
-                        log.Info("was success");
                         PSObject innerObj = (PSObject)obj.Properties["Data"].Value;
-                        log.Info(innerObj);
                         user = ADUser.GetAdUser(innerObj);
-                        log.Info(user.ToString() + "\n");
                     }
                     else
                     {
-                        log.Info("was fail");
                         log.Info(utils.GetString(obj, "Result"));
                     }
                 }
-                log.Info(stringBuilder.ToString());
             }
             catch (Exception e)
             {
@@ -272,6 +259,7 @@ namespace Exchange
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
             pipeline.Commands.AddScript("Get-MTAduser -CustomerID " + customerID);
+            PSObjectUtils utils = new PSObjectUtils();
             ADUser[] users = null;
             try
             {
@@ -281,12 +269,34 @@ namespace Exchange
                 {
                     //maybe fail !
                 }
-                users = new ADUser[results.Count];
-                int i = 0;
+                
                 foreach (PSObject obj in results)
                 {
-                    users[i] = ADUser.GetAdUser(obj);
-                    i++;
+                    if (utils.IsSuccess(obj))
+                    {
+                        Object data = obj.Properties["Data"].Value;
+                        
+                        if (data is PSObject)
+                        {
+                            users = new ADUser[1];
+                            users[0] = ADUser.GetAdUser((PSObject)data);
+                        }
+                        else if (data is Collection<PSObject>)
+                        {
+                            int i = 0;
+                            Collection<PSObject> dataCollection = (Collection<PSObject>)data;
+                            users = new ADUser[dataCollection.Count];
+                            foreach (PSObject innerObj in (Collection<PSObject>)data)
+                            {
+                                users[i] = ADUser.GetAdUser(innerObj);
+                                i++;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        log.Info(utils.GetString(obj, "Result"));
+                    }                    
                 }
             }
             catch (Exception e)
