@@ -272,6 +272,9 @@ namespace Exchange
                 
                 foreach (PSObject obj in results)
                 {
+                    log.Info(obj);
+                    log.Info(obj.Properties);
+                    log.Info(obj.Properties["Data"].Value);
                     if (utils.IsSuccess(obj))
                     {
                         Object data = obj.Properties["Data"].Value;
@@ -295,9 +298,6 @@ namespace Exchange
                     }
                     else
                     {
-                        log.Info(obj);
-                        log.Info(obj.Properties);
-                        log.Info(obj.Properties["Data"].Value);
                         log.Info(utils.GetString(obj, "Result"));
                     }                    
                 }
