@@ -299,10 +299,21 @@ namespace Exchange
                         {
                             log.Info("is obj array !");
                             int i = 0;
-                            foreach (PSObject innerObj in (Object[])data)
+                            Object[] dataArray = (Object[])data;
+                            if (dataArray.Length > 0)
                             {
-                                users[i] = ADUser.GetAdUser(innerObj);
-                                i++;
+                                if (dataArray[0] is PSObject)
+                                {
+                                    foreach (PSObject innerObj in (Object[])data)
+                                    {
+                                        users[i] = ADUser.GetAdUser(innerObj);
+                                        i++;
+                                    }
+                                }
+                                else
+                                {
+                                    log.Info("Array 0 = " + dataArray[0]);
+                                }
                             }
                         }
                         else
