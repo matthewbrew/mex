@@ -295,6 +295,9 @@ namespace Exchange
                     }
                     else
                     {
+                        log.Info(obj);
+                        log.Info(obj.Properties);
+                        log.Info(obj.Properties["Data"].Value);
                         log.Info(utils.GetString(obj, "Result"));
                     }                    
                 }
