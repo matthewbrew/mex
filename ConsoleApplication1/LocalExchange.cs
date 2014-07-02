@@ -80,7 +80,7 @@ namespace Exchange
     //                        pipeline.Commands.AddScript("$mycreds = New-Object System.Management.Automation.PSCredential (\"" + user + "\", $secpasswd)");
     //                        pipeline.Commands.AddScript("$s = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri " + uri + " -Authentication Basic -Credential $mycreds");
      //                       pipeline.Commands.AddScript("Import-PSSession $s");
-                            string importModule = "Import-Module C:\\provisioning\\tm.psm1";
+                            string importModule = "Import-Module C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\Modules\\MEXModule\\MEXModule.psm1";
                             pipeline.Commands.AddScript(importModule);
                             //pipeline.Commands.AddScript("Invoke-Command -Session $s -ScriptBlock {Import-Module testmodule}");
                             //pipeline.Commands.AddScript("new-MEXSession");
@@ -198,24 +198,15 @@ namespace Exchange
                 }
 
                 // convert the script result into a single string
-
                 var stringBuilder = new StringBuilder();
                 foreach (PSObject obj in results)
                 {
-                    stringBuilder.AppendLine(obj.ToString() + "\n");
+                    stringBuilder.AppendLine(obj.ToString());
                     foreach (PSPropertyInfo info in obj.Properties)
                     {
-                        stringBuilder.AppendLine(info.ToString() + "\n");
-                    }
-                    string forwardingAddress = GetString(obj, "ForwardingAddress");
-                    stringBuilder.AppendLine("Forwarding address: " + forwardingAddress + "\n");
-
-                    foreach (Object alias in GetObjectArray(obj, "EmailAlias"))
-                    {
-                        stringBuilder.AppendLine("Email Aliases: " + alias); 
+                        stringBuilder.AppendLine(info.ToString());
                     }
                 }
-
                 return stringBuilder.ToString();
             }
             catch(Exception e)
@@ -229,8 +220,7 @@ namespace Exchange
         {
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
-            //pipeline.Commands.AddScript("Get-MTAduser -CustomerID " + customerID + " -UserPrincipalName " + userPrincipalName);
-            pipeline.Commands.AddScript("Hello");
+            pipeline.Commands.AddScript("Get-MTAduser -CustomerID " + customerID + " -UserPrincipalName " + userPrincipalName);
             ADUser user = new ADUser();
             try
             {
@@ -240,23 +230,12 @@ namespace Exchange
                 {
                     //maybe fail !
                 }
-
-                var stringBuilder = new StringBuilder();
+                
                 foreach (PSObject obj in results)
-                {
-                    stringBuilder.AppendLine(obj.ToString());
-                    /*foreach (PSPropertyInfo info in obj.Properties)
-                    {
-                        stringBuilder.AppendLine(info.ToString());
-                    }*/
-                }
-                log.Info(stringBuilder.ToString());
-
-/*                foreach (PSObject obj in results)
                 {
                     user = ADUser.GetAdUser(obj);                    
                     log.Info(user.ToString() + "\n");
-                }*/
+                }
             }
             catch (Exception e)
             {
