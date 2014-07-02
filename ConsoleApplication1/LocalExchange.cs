@@ -259,28 +259,12 @@ namespace Exchange
                 {
                     //maybe fail !
                 }
-                
+                users = new ADUser[results.Count];
+                int i = 0;
                 foreach (PSObject obj in results)
                 {
-                    if (obj.Properties != null && obj.Properties["UserPrincipalName"] != null && obj.Properties["UserPrincipalName"].Value != null)
-                    {
-                        if (obj.Properties["UserPrincipalName"].Value is string)
-                        {
-                            log.Info("Only 1 result");
-                            users = new ADUser[1];
-                            users[0] = ADUser.GetAdUser(obj);
-                        }
-                        else if (obj.Properties["UserPrincipalName"].Value is string[])
-                        {
-                            log.Info("Many results");
-                            int numberOfUsers = ((Array)obj.Properties["UserPrincipalName"].Value).Length;
-                            users = new ADUser[numberOfUsers];
-                            for (int i = 0; i < numberOfUsers; i++)
-                            {
-                                users[i] = ADUser.GetAdUser(obj, i);
-                            }
-                        }
-                    }
+                    users[i] = ADUser.GetAdUser(obj);
+                    i++;
                 }
             }
             catch (Exception e)
