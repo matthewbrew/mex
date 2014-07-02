@@ -70,19 +70,26 @@ namespace Exchange
                 {
                     if (_runspace.RunspaceStateInfo.State != RunspaceState.Opened)
                     {
-                        _runspace.Open();
-                        RunspaceInvoke invoker = new RunspaceInvoke(_runspace);
-                        invoker.Invoke("Set-ExecutionPolicy Bypass");
-                        Pipeline pipeline = _runspace.CreatePipeline();
-//                        pipeline.Commands.AddScript("$secpasswd = ConvertTo-SecureString \"" + password + "\" -AsPlainText -Force");
-//                        pipeline.Commands.AddScript("$mycreds = New-Object System.Management.Automation.PSCredential (\"" + user + "\", $secpasswd)");
-//                        pipeline.Commands.AddScript("$s = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri " + uri + " -Authentication Basic -Credential $mycreds");
- //                       pipeline.Commands.AddScript("Import-PSSession $s");
-                        pipeline.Commands.AddScript("Import-Module C:\\provisioning\\testModule.psm1");
-                        //pipeline.Commands.AddScript("Invoke-Command -Session $s -ScriptBlock {Import-Module testmodule}");
-                        //pipeline.Commands.AddScript("new-MEXSession");
-                        //pipeline.Commands.AddScript("new-MEXSession");
-                        pipeline.Invoke();
+                        try
+                        {
+                            _runspace.Open();
+                            RunspaceInvoke invoker = new RunspaceInvoke(_runspace);
+                            invoker.Invoke("Set-ExecutionPolicy Bypass");
+                            Pipeline pipeline = _runspace.CreatePipeline();
+    //                        pipeline.Commands.AddScript("$secpasswd = ConvertTo-SecureString \"" + password + "\" -AsPlainText -Force");
+    //                        pipeline.Commands.AddScript("$mycreds = New-Object System.Management.Automation.PSCredential (\"" + user + "\", $secpasswd)");
+    //                        pipeline.Commands.AddScript("$s = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri " + uri + " -Authentication Basic -Credential $mycreds");
+     //                       pipeline.Commands.AddScript("Import-PSSession $s");
+                            pipeline.Commands.AddScript("Import-Module C:\\provisioning\\testModule.psm1");
+                            //pipeline.Commands.AddScript("Invoke-Command -Session $s -ScriptBlock {Import-Module testmodule}");
+                            //pipeline.Commands.AddScript("new-MEXSession");
+                            //pipeline.Commands.AddScript("new-MEXSession");
+                            pipeline.Invoke();
+                        }
+                        catch(Exception e)
+                        {
+                            log.Error("Exception in startup", e);
+                        }
                     }
                 }
             }
