@@ -233,9 +233,16 @@ namespace Exchange
                 {
                     //maybe fail !
                 }
-                
+
+                var stringBuilder = new StringBuilder();
                 foreach (PSObject obj in results)
                 {
+                    stringBuilder.AppendLine(obj.ToString());
+                    foreach (PSPropertyInfo info in obj.Properties)
+                    {
+                        stringBuilder.AppendLine(info.ToString());
+                    }
+
                     log.Info(obj);
                     log.Info(utils.GetObjectArray(obj, "Data"));
                     if (utils.IsSuccess(obj))
@@ -254,6 +261,7 @@ namespace Exchange
                         log.Info(utils.GetString(obj, "Result"));
                     }
                 }
+                log.Info(stringBuilder.ToString());
             }
             catch (Exception e)
             {
