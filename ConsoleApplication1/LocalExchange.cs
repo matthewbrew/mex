@@ -238,7 +238,7 @@ namespace Exchange
                 {
                     if (utils.IsSuccess(obj))
                     {
-                        foreach (PSObject innerObj in utils.GetObjectArray(obj, "data"))
+                        foreach (PSObject innerObj in utils.GetObjectArray(obj, "Data"))
                         {
                             user = ADUser.GetAdUser(innerObj);
                             log.Info(user.ToString() + "\n");
