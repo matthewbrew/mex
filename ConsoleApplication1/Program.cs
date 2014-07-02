@@ -42,7 +42,7 @@ namespace Exchange
                 //Import-Module testmodule
                 //get-help get-mtaduser -full
                 log.Info(localExchange.GetMtMailbox());
-                log.Info(localExchange.GetMtAduser("vs000013", "mb000013a"));
+                log.Info(localExchange.GetMtAduser("vs000013", "newusera@cust1.exchtest.webcentral.com.au"));
                 log.Info(localExchange.GetMtAdusers("vs000013"));
             }
             Console.Read();
