@@ -295,6 +295,20 @@ namespace Exchange
                                 i++;
                             }
                         }
+                        else if (data is Object[])
+                        {
+                            log.Info("is obj array !");
+                            int i = 0;
+                            foreach (PSObject innerObj in (Object[])data)
+                            {
+                                users[i] = ADUser.GetAdUser(innerObj);
+                                i++;
+                            }
+                        }
+                        else
+                        {
+                            log.Info("Weird !! " + data);
+                        }
                     }
                     else
                     {
