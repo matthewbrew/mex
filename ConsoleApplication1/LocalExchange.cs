@@ -236,16 +236,20 @@ namespace Exchange
                 
                 foreach (PSObject obj in results)
                 {
+                    log.Info(obj);
                     if (utils.IsSuccess(obj))
                     {
+                        log.Info("was success");
                         foreach (PSObject innerObj in utils.GetObjectArray(obj, "Data"))
                         {
+                            log.Info(innerObj);
                             user = ADUser.GetAdUser(innerObj);
                             log.Info(user.ToString() + "\n");
                         }
                     }
                     else
                     {
+                        log.Info("was fail");
                         log.Info(utils.GetString(obj, "result"));
                     }
                 }
