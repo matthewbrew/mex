@@ -229,7 +229,8 @@ namespace Exchange
         {
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
-            pipeline.Commands.AddScript("Get-MTAduser -CustomerID " + customerID + " -UserPrincipalName " + userPrincipalName);
+            //pipeline.Commands.AddScript("Get-MTAduser -CustomerID " + customerID + " -UserPrincipalName " + userPrincipalName);
+            pipeline.Commands.AddScript("Get-Module");
             ADUser user = new ADUser();
             try
             {
@@ -239,12 +240,23 @@ namespace Exchange
                 {
                     //maybe fail !
                 }
-                
+
+                var stringBuilder = new StringBuilder();
                 foreach (PSObject obj in results)
+                {
+                    stringBuilder.AppendLine(obj.ToString() + "\n");
+                    foreach (PSPropertyInfo info in obj.Properties)
+                    {
+                        stringBuilder.AppendLine(info.ToString() + "\n");
+                    }
+                }
+                log.Info(stringBuilder.ToString());
+
+/*                foreach (PSObject obj in results)
                 {
                     user = ADUser.GetAdUser(obj);                    
                     log.Info(user.ToString() + "\n");
-                }
+                }*/
             }
             catch (Exception e)
             {
