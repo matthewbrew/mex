@@ -237,6 +237,7 @@ namespace Exchange
                 foreach (PSObject obj in results)
                 {
                     log.Info(obj);
+                    log.Info(utils.GetObjectArray(obj, "Data"));
                     if (utils.IsSuccess(obj))
                     {
                         log.Info("was success");
