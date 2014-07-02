@@ -78,7 +78,7 @@ namespace Exchange
 //                        pipeline.Commands.AddScript("$mycreds = New-Object System.Management.Automation.PSCredential (\"" + user + "\", $secpasswd)");
 //                        pipeline.Commands.AddScript("$s = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri " + uri + " -Authentication Basic -Credential $mycreds");
  //                       pipeline.Commands.AddScript("Import-PSSession $s");
-                        pipeline.Commands.AddScript("Import-Module C:\\provisioning\\testModule.psm1");
+                        pipeline.Commands.AddScript("Import-Module testModule");
                         //pipeline.Commands.AddScript("Invoke-Command -Session $s -ScriptBlock {Import-Module testmodule}");
                         //pipeline.Commands.AddScript("new-MEXSession");
                         //pipeline.Commands.AddScript("new-MEXSession");
@@ -266,7 +266,7 @@ namespace Exchange
                             users = new ADUser[1];
                             users[0] = ADUser.GetAdUser(obj);
                         }
-                        else if (obj.Properties["UserPrincipalName"].Value is Array)
+                        else if (obj.Properties["UserPrincipalName"].Value is string[])
                         {
                             int numberOfUsers = ((Array)obj.Properties["UserPrincipalName"].Value).Length;
                             users = new ADUser[numberOfUsers];
