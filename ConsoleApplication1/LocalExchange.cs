@@ -85,6 +85,9 @@ namespace Exchange
                             //pipeline.Commands.AddScript("new-MEXSession");
                             //pipeline.Commands.AddScript("new-MEXSession");
                             pipeline.Invoke();
+
+                            string errors = GetErrors(pipeline);
+                            log.Error(errors);
                         }
                         catch(Exception e)
                         {
@@ -369,7 +372,7 @@ namespace Exchange
             CloseRunspace();
         }
 
-        private string GetErrors(Pipeline pipeline)
+        private static string GetErrors(Pipeline pipeline)
         {
             StringBuilder sb = new StringBuilder();
             if (pipeline.Error.Count > 0)
