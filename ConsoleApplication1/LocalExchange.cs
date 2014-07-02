@@ -304,7 +304,8 @@ namespace Exchange
                             {
                                 if (dataArray[0] is PSObject)
                                 {
-                                    foreach (PSObject innerObj in (Object[])data)
+                                    users = new ADUser[dataArray.Length];
+                                    foreach (PSObject innerObj in dataArray)
                                     {
                                         users[i] = ADUser.GetAdUser(innerObj);
                                         i++;
