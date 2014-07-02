@@ -230,7 +230,7 @@ namespace Exchange
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
             //pipeline.Commands.AddScript("Get-MTAduser -CustomerID " + customerID + " -UserPrincipalName " + userPrincipalName);
-            pipeline.Commands.AddScript("Get-Module");
+            pipeline.Commands.AddScript("Get-Command");
             ADUser user = new ADUser();
             try
             {
@@ -244,11 +244,11 @@ namespace Exchange
                 var stringBuilder = new StringBuilder();
                 foreach (PSObject obj in results)
                 {
-                    stringBuilder.AppendLine(obj.ToString() + "\n");
-                    foreach (PSPropertyInfo info in obj.Properties)
+                    stringBuilder.AppendLine(obj.ToString());
+                    /*foreach (PSPropertyInfo info in obj.Properties)
                     {
-                        stringBuilder.AppendLine(info.ToString() + "\n");
-                    }
+                        stringBuilder.AppendLine(info.ToString());
+                    }*/
                 }
                 log.Info(stringBuilder.ToString());
 
