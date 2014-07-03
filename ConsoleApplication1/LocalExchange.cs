@@ -185,6 +185,7 @@ namespace Exchange
 
         public string GetMtMailbox(string userPrincipalName)
         {
+            log.Info("------------------------------------- GET MAILBOX ----------------------------------------");
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
             string command = "Get-MTMailbox -UserPrincipalName " + userPrincipalName;
@@ -224,6 +225,7 @@ namespace Exchange
 
         public ADUser GetMtAduser(string customerID, string userPrincipalName)
         {
+            log.Info("------------------------------------- GET ADUSER ----------------------------------------");
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
             string command = "Get-MTAduser -CustomerID " + customerID + " -UserPrincipalName " + userPrincipalName;
@@ -275,6 +277,7 @@ namespace Exchange
 
         public List<ADUser> GetMtAdusers(string customerID)
         {
+            log.Info("------------------------------------- GET ADUSERS ----------------------------------------");
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
             string command = "Get-MTAduser -CustomerID " + customerID;
@@ -312,6 +315,7 @@ namespace Exchange
 
         public string SetMtAduser(ADUser adUser)
         {
+            log.Info("------------------------------------- SET ADUSER ----------------------------------------");
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
             pipeline.Commands.AddScript("Set-MTAduser " + adUser.GetPSParameters());
