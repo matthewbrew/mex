@@ -289,7 +289,7 @@ namespace Exchange
             {
                 var results = pipeline.Invoke();
                 //log any errors from the powershell pipe
-                string errors = GetErrors(pipeline);
+                GetErrors(pipeline);
                 foreach (PSObject obj in results)
                 {
                     if (utils.IsSuccess(obj))
@@ -319,45 +319,35 @@ namespace Exchange
             log.Info("------------------------------------- SET ADUSER ----------------------------------------");
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
-            pipeline.Commands.AddScript("Set-MTAduser " + adUser.GetPSParameters());
-
+            pipeline.Commands.AddScript("New-MTAduser " + adUser.GetPSParameters());
+            PSObjectUtils utils = new PSObjectUtils();
+            var stringBuilder = new StringBuilder();
             try
             {
                 var results = pipeline.Invoke();
-                string errors = GetErrors(pipeline);
-                if (errors != "")
-                {
-                    //maybe fail !
-                }
-
+                GetErrors(pipeline);
                 // convert the script result into a single string
-                var stringBuilder = new StringBuilder();
                 foreach (PSObject obj in results)
                 {
-                    ADUser user = ADUser.GetAdUser(obj);
-                    stringBuilder.AppendLine(user.ToString() + "\n");
-
-                    /*stringBuilder.AppendLine(obj.ToString() + "\n");
-                    foreach (PSPropertyInfo info in obj.Properties)
+                    if (utils.IsSuccess(obj))
                     {
-                        stringBuilder.AppendLine(info.ToString() + "\n");
+                        List<PSObject> data = GetData(obj);
+                        foreach (PSObject resultObj in data)
+                        {
+                            stringBuilder.AppendLine(resultObj.ToString());
+                        }
                     }
-                    string distinguishedName = GetString(obj, "DistinguishedName");
-                    stringBuilder.AppendLine("Distinguished Name: " + distinguishedName + "\n");
-
-                    foreach (Object alias in GetHashSet(obj, "AddedProperties"))
+                    else
                     {
-                        stringBuilder.AppendLine("Added Properties: " + alias);
-                    }*/
+                        LogResult(utils, obj);
+                    }
                 }
-
-                return stringBuilder.ToString();
             }
             catch (Exception e)
             {
                 log.Error("Exception from getmailbox powershell", e);
             }
-            return "";
+            return stringBuilder.ToString();
         }
 
         public static string EnableMailbox(string accountName)
