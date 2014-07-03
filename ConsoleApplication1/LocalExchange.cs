@@ -187,7 +187,8 @@ namespace Exchange
         {
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
-            pipeline.Commands.AddScript("Get-MTMailbox -UserPrincipalName " + userPrincipalName);
+            string command = "Get-MTMailbox -UserPrincipalName " + userPrincipalName;
+            pipeline.Commands.AddScript(command);
             PSObjectUtils utils = new PSObjectUtils();
             // convert the script result into a single string
             var stringBuilder = new StringBuilder();
@@ -216,6 +217,7 @@ namespace Exchange
             catch(Exception e)
             {
                 log.Error("Exception from getmailbox powershell", e);
+                log.Error("Command: " + command);
             }
             return stringBuilder.ToString();
         }
@@ -253,6 +255,7 @@ namespace Exchange
             catch (Exception e)
             {
                 log.Error("Exception from get-mtaduser powershell", e);
+                log.Error("Command: " + command);
             }
 
             if(users.Count == 1)
@@ -274,7 +277,8 @@ namespace Exchange
         {
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
-            pipeline.Commands.AddScript("Get-MTAduser -CustomerID " + customerID);
+            string command = "Get-MTAduser -CustomerID " + customerID;
+            pipeline.Commands.AddScript(command);
             PSObjectUtils utils = new PSObjectUtils();
             List<ADUser> users = new List<ADUser>();
             try
@@ -301,6 +305,7 @@ namespace Exchange
             catch (Exception e)
             {
                 log.Error("Exception from get-mtaduser powershell", e);
+                log.Error("Command: " + command);
             }
             return users;
         }
