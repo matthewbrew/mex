@@ -441,6 +441,8 @@ namespace Exchange
                     Hashtable dataHashtable = (Hashtable)data;
                     if (dataHashtable.Values != null)
                     {
+                        PSObject hashConvert = new PSObject();
+                        bool didConvert = false;
                         foreach (string key in dataHashtable.Keys)
                         {
                             Object value = dataHashtable[key];
@@ -463,6 +465,13 @@ namespace Exchange
                             else
                             {
                                 log.Info("Weird inner hashtable !! " + value);
+                                hashConvert.Properties.Add(new PSNoteProperty(key, dataHashtable[key]));
+                                didConvert = true;
+                            }
+
+                            if(didConvert)
+                            {
+                                resultData.Add(hashConvert);
                             }
                         }
                     }
