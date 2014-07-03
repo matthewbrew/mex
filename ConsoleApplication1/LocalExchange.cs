@@ -474,11 +474,10 @@ namespace Exchange
                                 hashConvert.Properties.Add(new PSNoteProperty(key, dataHashtable[key]));
                                 didConvert = true;
                             }
-
-                            if(didConvert)
-                            {
-                                resultData.Add(hashConvert);
-                            }
+                        }
+                        if (didConvert)
+                        {
+                            resultData.Add(hashConvert);
                         }
                     }
                     else
