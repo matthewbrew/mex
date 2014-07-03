@@ -83,6 +83,8 @@ namespace Exchange
                             //string importModule = "Import-Module C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\Modules\\MEXModule\\MEXModule.psm1";
                             string importModule = "Import-Module C:\\provisioning\\MEXModule.psm1";
                             pipeline.Commands.AddScript(importModule);
+                            pipeline.Commands.AddScript("new-MEXSession");
+                            pipeline.Commands.AddScript("new-ADSession");
                             //pipeline.Commands.AddScript("Invoke-Command -Session $s -ScriptBlock {Import-Module testmodule}");
                             //pipeline.Commands.AddScript("new-MEXSession");
                             //pipeline.Commands.AddScript("new-MEXSession");
