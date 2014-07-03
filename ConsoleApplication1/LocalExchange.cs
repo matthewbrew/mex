@@ -435,62 +435,30 @@ namespace Exchange
                         }
                     }
                 }
+                else if (data is Hashtable)
+                {
+                    Hashtable dataHashtable = (Hashtable)data;
+                    if (dataHashtable.Values != null)
+                    {
+                        foreach (Object innerObj in dataHashtable.Values)
+                        {
+                            if (innerObj is PSObject)
+                            {
+                                resultData.Add((PSObject)innerObj);
+                            }
+                            else
+                            {
+                                log.Info("Weird Hashtable !! " + innerObj);
+                            }
+                        }
+                    }
+                }
                 else
                 {
                     log.Info("Weird !! " + data);
                 }
             }
             return resultData;
-        }
-
-        private bool GetBoolean(PSObject obj, string name)
-        {
-            if (!IsHashRefNull(obj, name))
-            {
-                return (bool)obj.Properties[name].Value;
-            }
-            return false;
-        }
-
-        private string GetString(PSObject obj, string name)
-        {
-            if (!IsHashRefNull(obj, name))
-            {
-                return (string)obj.Properties[name].Value;
-            }
-            return "";
-        }
-
-        private Object[] GetObjectArray(PSObject obj, string name)
-        {
-            if (!IsHashRefNull(obj, name))
-            {
-                return (Object[])obj.Properties[name].Value;
-            }
-            return new Object[] {};
-        }
-
-        private HashSet<string> GetHashSet(PSObject obj, string name)
-        {
-            if (!IsHashRefNull(obj, name))
-            {
-                return (HashSet<string>)obj.Properties[name].Value;
-            }
-            return new HashSet<string>();
-        }
-
-        private SortedDictionary<string, string> GetSortedDictionary(PSObject obj, string name)
-        {
-            if (!IsHashRefNull(obj, name))
-            {
-                return (SortedDictionary<string, string>)obj.Properties[name].Value;
-            }
-            return new SortedDictionary<string, string>();
-        }
-
-        private Boolean IsHashRefNull(PSObject obj, string name)
-        {
-            return obj.Properties[name] == null || obj.Properties[name].Value == null;
         }
     }
 }
