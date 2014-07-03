@@ -229,7 +229,7 @@ namespace Exchange
             log.Info("------------------------------------- GET ADUSER ----------------------------------------");
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
-            string command = "Get-MTAduser -CustomerID " + customerID + " -UserPrincipalName " + userPrincipalName;
+            string command = "Get-MTAduser -CustomerID " + customerID + " -UserPrincipalName " + userPrincipalName + " -extended";
             pipeline.Commands.AddScript(command);
             ADUser user = new ADUser();
             PSObjectUtils utils = new PSObjectUtils();
