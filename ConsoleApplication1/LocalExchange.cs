@@ -88,14 +88,6 @@ namespace Exchange
                             //pipeline.Commands.AddScript("new-MEXSession");
                             pipeline.Invoke();
 
-                            pipeline = _runspace.CreatePipeline();
-                            pipeline.Commands.AddScript("new-MEXSession");
-                            pipeline.Invoke();
-
-                            pipeline = _runspace.CreatePipeline();
-                            pipeline.Commands.AddScript("new-ADSession");
-                            pipeline.Invoke();
-
                             log.Info("added test module script: " + importModule);
                             string errors = GetErrors(pipeline);
                             log.Error(errors);
