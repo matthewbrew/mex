@@ -440,15 +440,22 @@ namespace Exchange
                     Hashtable dataHashtable = (Hashtable)data;
                     if (dataHashtable.Values != null)
                     {
-                        foreach (Object innerObj in dataHashtable.Values)
+                        foreach (string key in dataHashtable.Keys)
                         {
-                            if (innerObj is PSObject)
+                            Object value = dataHashtable[key];
+                            if (value is PSObject)
                             {
-                                resultData.Add((PSObject)innerObj);
+                                resultData.Add((PSObject)value);
                             }
-                            else
+                            else if(value is Hashtable)
                             {
-                                log.Info("Weird Hashtable !! " + innerObj);
+                                Hashtable innerHashtable = (Hashtable)value;
+                                PSObject innerPSObject = new PSObject();
+                                foreach (string innerkey in innerHashtable.Keys)
+                                {
+                                    innerPSObject.Properties.Add(new PSNoteProperty(innerkey, innerHashtable[innerkey]));
+                                }
+                                resultData.Add(innerPSObject);
                             }
                         }
                     }
