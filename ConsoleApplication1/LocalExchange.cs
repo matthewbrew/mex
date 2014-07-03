@@ -319,7 +319,9 @@ namespace Exchange
             log.Info("------------------------------------- SET ADUSER ----------------------------------------");
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
-            pipeline.Commands.AddScript("New-MTAduser " + adUser.GetPSParameters());
+            string command = "New-MTAduser " + adUser.GetPSParameters();
+            log.Info("Command: " + command);
+            pipeline.Commands.AddScript(command);
             PSObjectUtils utils = new PSObjectUtils();
             var stringBuilder = new StringBuilder();
             try
@@ -346,6 +348,7 @@ namespace Exchange
             catch (Exception e)
             {
                 log.Error("Exception from getmailbox powershell", e);
+                log.Error("Command: " + command);
             }
             return stringBuilder.ToString();
         }
