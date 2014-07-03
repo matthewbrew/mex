@@ -205,6 +205,7 @@ namespace Exchange
                         {
                             stringBuilder.AppendLine(mailboxObj.ToString());
                         }
+                        LogResult(utils, obj);
                     }
                     else
                     {
@@ -445,19 +446,29 @@ namespace Exchange
                             Object value = dataHashtable[key];
                             if (value is PSObject)
                             {
+                                log.Info("PSObject inside the hashtable" + value);
                                 resultData.Add((PSObject)value);
                             }
-                            else if(value is Hashtable)
+                            else if (value is Hashtable)
                             {
                                 Hashtable innerHashtable = (Hashtable)value;
                                 PSObject innerPSObject = new PSObject();
+                                log.Info("Hashtable inside the hashtable" + value);
                                 foreach (string innerkey in innerHashtable.Keys)
                                 {
                                     innerPSObject.Properties.Add(new PSNoteProperty(innerkey, innerHashtable[innerkey]));
                                 }
                                 resultData.Add(innerPSObject);
                             }
+                            else
+                            {
+                                log.Info("Weird inner hashtable !! " + value);
+                            }
                         }
+                    }
+                    else
+                    {
+                        log.Info("Hashtable empty !! " + dataHashtable);
                     }
                 }
                 else
