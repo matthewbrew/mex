@@ -183,154 +183,123 @@ namespace Exchange
             return stringBuilder.ToString();
         }
 
-        public string GetMtMailbox()
+        public string GetMtMailbox(string userPrincipalName)
         {
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
-            pipeline.Commands.AddScript("Get-MTMailbox -Identity mb000013a");
-
+            pipeline.Commands.AddScript("Get-MTMailbox -UserPrincipalName " + userPrincipalName);
+            PSObjectUtils utils = new PSObjectUtils();
+            // convert the script result into a single string
+            var stringBuilder = new StringBuilder();
             try
             {
                 var results = pipeline.Invoke();
                 string errors = GetErrors(pipeline);
-                if (errors != "")
-                {
-                    //fail !
-                }
-
-                // convert the script result into a single string
-                var stringBuilder = new StringBuilder();
+                
                 foreach (PSObject obj in results)
                 {
-                    stringBuilder.AppendLine(obj.ToString());
-                    foreach (PSPropertyInfo info in obj.Properties)
+                    if (utils.IsSuccess(obj))
                     {
-                        stringBuilder.AppendLine(info.ToString());
+                        List<PSObject> data = GetData(obj);
+                        foreach (PSObject mailboxObj in data)
+                        {
+                            stringBuilder.AppendLine(mailboxObj.ToString());
+                        }
+                    }
+                    else
+                    {
+                        LogResult(utils, obj);
                     }
                 }
-                return stringBuilder.ToString();
             }
             catch(Exception e)
             {
                 log.Error("Exception from getmailbox powershell", e);
             }
-            return "";
+            return stringBuilder.ToString();
         }
 
         public ADUser GetMtAduser(string customerID, string userPrincipalName)
         {
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
-            pipeline.Commands.AddScript("Get-MTAduser -CustomerID " + customerID + " -UserPrincipalName " + userPrincipalName);
+            string command = "Get-MTAduser -CustomerID " + customerID + " -UserPrincipalName " + userPrincipalName;
+            pipeline.Commands.AddScript(command);
             ADUser user = new ADUser();
             PSObjectUtils utils = new PSObjectUtils();
+            List<ADUser> users = new List<ADUser>();
             try
             {
                 var results = pipeline.Invoke();
+                //log any errors from the powershell pipe
                 string errors = GetErrors(pipeline);
-  
-                if (errors != "")
-                {
-                    //maybe fail !
-                }
-
                 foreach (PSObject obj in results)
                 {
                     if (utils.IsSuccess(obj))
                     {
-                        PSObject innerObj = (PSObject)obj.Properties["Data"].Value;
-                        user = ADUser.GetAdUser(innerObj);
+                        List<PSObject> data = GetData(obj);
+                        foreach (PSObject adUserObj in data)
+                        {
+                            users.Add(ADUser.GetAdUser(adUserObj));
+                        }
                     }
                     else
                     {
-                        log.Info(utils.GetString(obj, "Result"));
+                        LogResult(utils, obj);
                     }
                 }
             }
             catch (Exception e)
             {
-                log.Error("Exception from getmailbox powershell", e);
+                log.Error("Exception from get-mtaduser powershell", e);
             }
-            return user;
+
+            if(users.Count == 1)
+            {
+                return users[0];
+            }
+            else if (users.Count > 1)
+            {
+                log.Error("More than one user found for: " + command);
+            }
+            else
+            {
+                log.Error("No user found for: " + command);
+            }
+            return null;
         }
 
-        public ADUser[] GetMtAdusers(string customerID)
+        public List<ADUser> GetMtAdusers(string customerID)
         {
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
             pipeline.Commands.AddScript("Get-MTAduser -CustomerID " + customerID);
             PSObjectUtils utils = new PSObjectUtils();
-            ADUser[] users = null;
+            List<ADUser> users = new List<ADUser>();
             try
             {
                 var results = pipeline.Invoke();
+                //log any errors from the powershell pipe
                 string errors = GetErrors(pipeline);
-                if (errors != "")
-                {
-                    //maybe fail !
-                }
-                
                 foreach (PSObject obj in results)
                 {
-                    log.Info(obj);
-                    log.Info(obj.Properties);
-                    log.Info(obj.Properties["Data"].Value);
                     if (utils.IsSuccess(obj))
                     {
-                        Object data = obj.Properties["Data"].Value;
-                        
-                        if (data is PSObject)
+                        List<PSObject> data = GetData(obj);
+                        foreach (PSObject adUserObj in data)
                         {
-                            users = new ADUser[1];
-                            users[0] = ADUser.GetAdUser((PSObject)data);
-                        }
-                        else if (data is Collection<PSObject>)
-                        {
-                            int i = 0;
-                            Collection<PSObject> dataCollection = (Collection<PSObject>)data;
-                            users = new ADUser[dataCollection.Count];
-                            foreach (PSObject innerObj in (Collection<PSObject>)data)
-                            {
-                                users[i] = ADUser.GetAdUser(innerObj);
-                                i++;
-                            }
-                        }
-                        else if (data is Object[])
-                        {
-                            log.Info("is obj array !");
-                            int i = 0;
-                            Object[] dataArray = (Object[])data;
-                            if (dataArray.Length > 0)
-                            {
-                                if (dataArray[0] is PSObject)
-                                {
-                                    users = new ADUser[dataArray.Length];
-                                    foreach (PSObject innerObj in dataArray)
-                                    {
-                                        users[i] = ADUser.GetAdUser(innerObj);
-                                        i++;
-                                    }
-                                }
-                                else
-                                {
-                                    log.Info("Array 0 = " + dataArray[0]);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            log.Info("Weird !! " + data);
+                            users.Add(ADUser.GetAdUser(adUserObj));
                         }
                     }
                     else
                     {
-                        log.Info(utils.GetString(obj, "Result"));
+                        LogResult(utils, obj);
                     }                    
                 }
             }
             catch (Exception e)
             {
-                log.Error("Exception from getmailbox powershell", e);
+                log.Error("Exception from get-mtaduser powershell", e);
             }
             return users;
         }
@@ -404,6 +373,11 @@ namespace Exchange
             CloseRunspace();
         }
 
+        private void LogResult(PSObjectUtils utils, PSObject obj)
+        {
+            log.Info("Result: " + utils.GetString(obj, "Result") + " ResultMessage: " + utils.GetString(obj, "ResultMessage") + " Error: " + utils.GetString(obj, "ErrorMessage"));
+        }
+
         private static string GetErrors(Pipeline pipeline)
         {
             StringBuilder sb = new StringBuilder();
@@ -420,6 +394,53 @@ namespace Exchange
                 }
             }
             return sb.ToString();
+        }
+
+        private List<PSObject> GetData(PSObject obj)
+        {
+            List<PSObject> resultData = new List<PSObject>();
+            if (obj.Properties["Data"] == null)
+            {
+                log.Error("No data returned" + obj);
+            }
+            else
+            {
+                Object data = obj.Properties["Data"].Value;
+                if (data is PSObject)
+                {
+                    resultData.Add((PSObject)data);
+                }
+                else if (data is Collection<PSObject>)
+                {
+                    foreach (PSObject innerObj in (Collection<PSObject>)data)
+                    {
+                        resultData.Add(innerObj);
+                    }
+                }
+                else if (data is Object[])
+                {
+                    Object[] dataArray = (Object[])data;
+                    if (dataArray.Length > 0)
+                    {
+                        if (dataArray[0] is PSObject)
+                        {
+                            foreach (PSObject innerObj in dataArray)
+                            {
+                                resultData.Add(innerObj);
+                            }
+                        }
+                        else
+                        {
+                            log.Error("Array 0 = " + dataArray[0]);
+                        }
+                    }
+                }
+                else
+                {
+                    log.Info("Weird !! " + data);
+                }
+            }
+            return resultData;
         }
 
         private bool GetBoolean(PSObject obj, string name)
