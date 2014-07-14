@@ -3,6 +3,5 @@ C:\Users\Administrator\Desktop\MEXDev\ConsoleApplication1\bin\Debug\ConsoleAppli
 C:\Users\Administrator\Desktop\MEXDev\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
 C:\Users\Administrator\Desktop\MEXDev\ConsoleApplication1\bin\Debug\log4net.dll
 C:\Users\Administrator\Desktop\MEXDev\ConsoleApplication1\bin\Debug\log4net.xml
-C:\Users\Administrator\Desktop\MEXDev\ConsoleApplication1\obj\Debug\ExchangeService.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\MEXDev\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
 C:\Users\Administrator\Desktop\MEXDev\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

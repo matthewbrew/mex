@@ -45,6 +45,7 @@ namespace Exchange
                 ADUser adUser = localExchange.GetMtAduser("vs000013", "newusera@cust1.exchtest.webcentral.com.au");
                 log.Info(adUser);
 
+                /*
                 Random rnd = new Random();
                 int randomUserNumber = rnd.Next(100000); 
                 adUser.setUserPrincipalName(randomUserNumber + "newusertest@cust1.exchtest.webcentral.com.au");
@@ -55,7 +56,7 @@ namespace Exchange
                 log.Info(localExchange.GetMtAdusers("vs000013"));
                 log.Info(localExchange.GetMtAduser("vs000013", "saedfwaer2341234"));
                 log.Info(localExchange.GetMtAdusers("q245dfasdfad"));
-
+                */
 
 
             }
