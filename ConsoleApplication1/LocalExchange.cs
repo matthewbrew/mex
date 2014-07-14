@@ -189,7 +189,7 @@ namespace Exchange
             log.Info("------------------------------------- GET MAILBOX ----------------------------------------");
             var runspace = GetRunspace();
             Pipeline pipeline = runspace.CreatePipeline();
-            string command = "Get-MTMailbox -UserPrincipalName " + userPrincipalName;
+            string command = "Get-MTMailbox -Identity " + userPrincipalName;
             pipeline.Commands.AddScript(command);
             PSObjectUtils utils = new PSObjectUtils();
             // convert the script result into a single string
