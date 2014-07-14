@@ -47,7 +47,7 @@ namespace Exchange
 
                 Random rnd = new Random();
                 int randomUserNumber = rnd.Next(100000); 
-                adUser.setIdentity(randomUserNumber + "newusertest@cust1.exchtest.webcentral.com.au");
+                adUser.setUserPrincipalName(randomUserNumber + "newusertest@cust1.exchtest.webcentral.com.au");
                 adUser.setAccountPassword(randomUserNumber + "Test#");
                 adUser.setCustomerID("vs000013");
                 log.Info(localExchange.SetMtAduser(adUser));
